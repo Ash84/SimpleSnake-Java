@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class Grid {
 
-    private String[][] grid = null;
-    private int nRows = 0;
-    private int nCols = 0;
+    private String[][] grid;
+    private int nRows;
+    private int nCols;
     private int[][] intGrid;
 
     public Grid(int nRows, int nCols) {
@@ -23,20 +23,18 @@ public class Grid {
 
     @Override
     public String toString() {
-        String retour = "";
-        for (int i=0; i< nCols+2; i++)
-            retour = retour + "+ ";
-        retour = retour + "\n";
+        StringBuilder retour = new StringBuilder();
+        retour.append("+ ".repeat(Math.max(0, nCols + 2)));
+        retour.append("\n");
         for (int i=0; i < nRows; i++) {
-                retour = retour + "+ ";
+                retour.append("+ ");
             for (int j=0; j < nCols; j++) {
-                retour = retour + grid[i][j] + " ";
+                retour.append(grid[i][j]).append(" ");
             }
-            retour = retour + "+\n";
+            retour.append("+\n");
         }
-        for (int i=0; i< nCols+2; i++)
-            retour = retour + "+ ";
-        return retour;
+        retour.append("+ ".repeat(Math.max(0, nCols + 2)));
+        return retour.toString();
     }
 
     public Boolean pointInsideGrid(int y, int x) {
@@ -82,6 +80,10 @@ public class Grid {
         return intGrid;
     }
 
+    public int[][] getIntGrid() {
+        return intGrid;
+    }
+
     public void decrIntGrid() {
         for (int i=0; i < nRows; i++) {
             for (int j=0; j < nCols; j++) {
@@ -90,6 +92,16 @@ public class Grid {
             }
         }
     }
+
+    public void incrIntGrid() {
+        for (int i=0; i < nRows; i++) {
+            for (int j=0; j < nCols; j++) {
+                if (intGrid[i][j] > 0)
+                    intGrid[i][j]++;
+            }
+        }
+    }
+
     public void updateGrids(Snake snake) {
         for (int i = 0; i < nRows; i++) {
             for (int j = 0; j < nCols; j++) {
@@ -110,6 +122,9 @@ public class Grid {
         decrIntGrid();
     }
 
+    public void setIntGrid(int[][] intGrid) {
+        this.intGrid = intGrid;
+    }
 }
 
 

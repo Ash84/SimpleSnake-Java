@@ -19,7 +19,7 @@ public class Main {
         while(s.isAlive()) {
             if (i == 3 || i == 20 || i == 22 || i == 24 || i == 26)
                 s.turnRight();
-            else if (i == 1 || i == 11 || i == 14 || i == 16 || i == 18 || i == 28)
+            else if (i == 11 || i == 14 || i == 16 || i == 18 || i == 28)
                 s.turnLeft();
             s.moveOn(grid);
             grid.updateGrids(s);

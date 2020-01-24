@@ -2,9 +2,9 @@ package snake;
 
 public class Snake {
 
-    private int[] pos = new int[2];
-    private int[] speed = new int[2];
-    private String color = null;
+    private int[] pos;
+    private int[] speed;
+    private String color;
     private Boolean alive = true;
     private int size = 1;
 
@@ -25,8 +25,7 @@ public class Snake {
     public int[] getNextPosition() {
         int newy = pos[0] + speed[0];
         int newx = pos[1] + speed[1];
-        int[] newpos = {newy, newx};
-        return newpos;
+        return new int[]{newy, newx};
     }
 
     public void turnRight() {
@@ -67,8 +66,9 @@ public class Snake {
         }
     }
 
-    public void eat() {
+    public void eat(Grid g) {
         this.size++;
+        g.incrIntGrid();
     }
 
     public int[] getPos() {
@@ -80,25 +80,26 @@ public class Snake {
     }
 
     public void moveOn(Grid grid) {
-        int[] posBuffer = new int[2];
-        posBuffer = this.getNextPosition();
+        int[] posBuffer = this.getNextPosition();
         int rows = grid.getNRows();
         int cols = grid.getNCols();
-        if (posBuffer[0] >= grid.getNRows())
-            posBuffer[0] = posBuffer[0] - rows;
-        if (posBuffer[1] >= grid.getNCols())
-            posBuffer[1] = posBuffer[1] - cols;
-        if (posBuffer[0] < 0)
-            posBuffer[0] = posBuffer[0] + rows;
-        if (posBuffer[1] < 0)
-            posBuffer[1] = posBuffer[1] + cols;
+        if (!grid.pointInsideGrid(posBuffer[0], posBuffer[1])) {
+            if (posBuffer[0] >= grid.getNRows())
+                posBuffer[0] = posBuffer[0] - rows;
+            else if (posBuffer[1] >= grid.getNCols())
+                posBuffer[1] = posBuffer[1] - cols;
+            else if (posBuffer[0] < 0)
+                posBuffer[0] = posBuffer[0] + rows;
+            else if (posBuffer[1] < 0)
+                posBuffer[1] = posBuffer[1] + cols;
+        }
 
         if(grid.getCell(posBuffer[0],posBuffer[1]).compareTo("#") == 0)
             killSnake();
         else if(grid.getCell(posBuffer[0],posBuffer[1]).compareTo("*") == 0)
             killSnake();
         else if(grid.getCell(posBuffer[0],posBuffer[1]).compareTo("o") == 0)
-            eat();
+            eat(grid);
 
         this.pos = posBuffer;
     }

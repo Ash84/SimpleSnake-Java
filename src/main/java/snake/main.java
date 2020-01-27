@@ -1,6 +1,7 @@
 package snake;
 
-public class Main {
+public class main {
+
     public static void main(String[] args) throws InterruptedException {
         Grid grid = new Grid(10, 20);
         int [] pos = {0,0}; int [] speed = {0,1};

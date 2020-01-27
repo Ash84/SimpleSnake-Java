@@ -112,4 +112,48 @@ class SnakeTest {
         assertEquals(next[0], s.getNextPosition()[0]);
         assertEquals(next[1], s.getNextPosition()[1]);
     }
+    @Test
+    void moveOn() {
+        Grid g = new Grid(2, 4);
+        int[] pos = {0, 0};
+        int[] speed = {0, 1};
+        String color = "red";
+        Snake s = new Snake(pos, speed, color);
+        s.moveOn(g);
+        g.updateGrids(s);
+        assertEquals( "+ + + + + + \n" +
+                "+   *     +\n" +
+                "+         +\n" +
+                "+ + + + + + ", g.toString());
+        s.moveOn(g);
+        g.updateGrids(s);
+        s.moveOn(g);
+        g.updateGrids(s);
+        s.moveOn(g);
+        g.updateGrids(s);
+        s.moveOn(g);
+        g.updateGrids(s);
+        assertEquals( "+ + + + + + \n" +
+                "+   *     +\n" +
+                "+         +\n" +
+                "+ + + + + + ", g.toString());
+        s.turnLeft();
+        s.turnLeft();
+        s.moveOn(g);
+        g.updateGrids(s);
+        s.moveOn(g);
+        g.updateGrids(s);
+        assertEquals( "+ + + + + + \n" +
+                "+       * +\n" +
+                "+         +\n" +
+                "+ + + + + + ", g.toString());
+        s.turnRight();
+        s.moveOn(g);
+        g.updateGrids(s);
+        assertEquals(  "+ + + + + + \n" +
+                "+         +\n" +
+                "+       * +\n" +
+                "+ + + + + + ", g.toString());
+    }
+
 }

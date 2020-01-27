@@ -79,7 +79,6 @@ class GridTest {
 
     }
 
-
     @Test
     void getNRows() {
         assertEquals(2, g.getNRows());
@@ -111,47 +110,21 @@ class GridTest {
     }
 
     @Test
-    void moveOn() {
-        int[] pos = {0, 0};
-        int[] speed = {0, 1};
-        String color = "red";
-        Snake s = new Snake(pos, speed, color);
-        s.moveOn(g);
-        g.updateGrids(s);
-        assertEquals( "+ + + + + + \n" +
-                               "+   *     +\n" +
-                               "+         +\n" +
-                               "+ + + + + + ", g.toString());
-        s.moveOn(g);
-        g.updateGrids(s);
-        s.moveOn(g);
-        g.updateGrids(s);
-        s.moveOn(g);
-        g.updateGrids(s);
-        s.moveOn(g);
-        g.updateGrids(s);
-        assertEquals( "+ + + + + + \n" +
-                               "+   *     +\n" +
-                               "+         +\n" +
-                               "+ + + + + + ", g.toString());
-        s.turnLeft();
-        s.turnLeft();
-        s.moveOn(g);
-        g.updateGrids(s);
-        s.moveOn(g);
-        g.updateGrids(s);
-        assertEquals( "+ + + + + + \n" +
-                               "+       * +\n" +
-                               "+         +\n" +
-                               "+ + + + + + ", g.toString());
-        s.turnRight();
-        s.moveOn(g);
-        g.updateGrids(s);
-        assertEquals(  "+ + + + + + \n" +
-                                "+         +\n" +
-                                "+       * +\n" +
-                                "+ + + + + + ", g.toString());
+    void decrIntGrid() {
+        int[][] intGrid = {{1, 2, 3, 0},
+                           {0, 0, 0, 6}};
+        int[][] intGridplusOne = {{0, 1, 2, 0},
+                                  {0, 0, 0, 5}};
+        g.setIntGrid(intGrid);
+        g.decrIntGrid();
+        intGrid = g.getIntGrid();
+        for (int i = 0; i < g.getNRows(); i++) {
+            for (int j = 0; j < g.getNCols(); j++) {
+                assertEquals(intGrid[i][j], intGridplusOne[i][j]);
+            }
+        }
     }
+
     @Test
     void genIntGrid() {
         int[][] compare = { {0, 0, 0, 0},

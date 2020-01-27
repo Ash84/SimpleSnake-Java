@@ -81,12 +81,11 @@ public class Snake {
 
     public void moveOn(Grid grid) {
         int[] posBuffer = this.getNextPosition();
-        int rows = grid.getNRows();
-        int cols = grid.getNCols();
+        int rows = grid.getNRows(); int cols = grid.getNCols();
         if (!grid.pointInsideGrid(posBuffer[0], posBuffer[1])) {
-            if (posBuffer[0] >= grid.getNRows())
+            if (posBuffer[0] >= rows)
                 posBuffer[0] = posBuffer[0] - rows;
-            else if (posBuffer[1] >= grid.getNCols())
+            else if (posBuffer[1] >= cols)
                 posBuffer[1] = posBuffer[1] - cols;
             else if (posBuffer[0] < 0)
                 posBuffer[0] = posBuffer[0] + rows;

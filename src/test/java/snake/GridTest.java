@@ -17,7 +17,7 @@ class GridTest {
     @Test
     void getGrid() {
         String[][] gE = {{" ", " ", " ", " "},
-                {" ", " ", " ", " "}};
+                         {" ", " ", " ", " "}};
         String[][] actual = g.getGrid();
         for (int i = 0; i < gE.length; i++) {
             for (int j = 0; j < gE[0].length; j++) {
@@ -28,10 +28,10 @@ class GridTest {
 
     @Test
     void testToString() {
-        assertEquals("+ + + + + + \n" +
-                "+         +\n" +
-                "+         +\n" +
-                "+ + + + + + ", g.toString());
+        assertEquals(  "+ + + + + + \n" +
+                                "+         +\n" +
+                                "+         +\n" +
+                                "+ + + + + + ", g.toString());
         Grid h = new Grid(0,0);
         assertEquals("+ + \n" +
                               "+ + ", h.toString());
@@ -49,34 +49,33 @@ class GridTest {
     @Test
     void placeObject() {
         g.placeObject(0, 0, "/");
-        assertEquals("+ + + + + + \n" +
-                "+ /       +\n" +
-                "+         +\n" +
-                "+ + + + + + ", g.toString());
+        assertEquals(  "+ + + + + + \n" +
+                                "+ /       +\n" +
+                                "+         +\n" +
+                                "+ + + + + + ", g.toString());
         g.placeObject(1, 3, "%");
-        assertEquals("+ + + + + + \n" +
-                "+ /       +\n" +
-                "+       % +\n" +
-                "+ + + + + + ", g.toString());
+        assertEquals(  "+ + + + + + \n" +
+                                "+ /       +\n" +
+                                "+       % +\n" +
+                                "+ + + + + + ", g.toString());
     }
 
     @Test
     void dropBlock() {
         g.dropBlock(1, 1);
-        assertEquals("+ + + + + + \n" +
-                "+         +\n" +
-                "+   #     +\n" +
-                "+ + + + + + ", g.toString());
+        assertEquals(  "+ + + + + + \n" +
+                                "+         +\n" +
+                                "+   #     +\n" +
+                                "+ + + + + + ", g.toString());
     }
 
     @Test
     void dropFood() {
         g.dropFood(1, 2);
-        assertEquals("+ + + + + + \n" +
-                "+         +\n" +
-                "+     o   +\n" +
-                "+ + + + + + ", g.toString());
-
+        assertEquals(  "+ + + + + + \n" +
+                                "+         +\n" +
+                                "+     o   +\n" +
+                                "+ + + + + + ", g.toString());
     }
 
     @Test
@@ -101,7 +100,8 @@ class GridTest {
         int[] pos = {0, 0};
         int[] speed = {0, 1};
         String color = "red";
-        Snake s = new Snake(pos, speed, color);
+        String player = "Player1";
+        Snake s = new Snake(pos, speed, color, player);
         g.updateGrids(s);
         assertEquals(  "+ + + + + + \n" +
                                 "+ *       +\n" +

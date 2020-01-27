@@ -12,10 +12,11 @@ class SnakeTest {
     int[] pos = {4, 4};
     int[] speed = {0, 1};
     String color = "red";
+    String player = "Player1";
 
     @BeforeEach
     void setUp() {
-        s = new Snake(pos, speed, color);
+        s = new Snake(pos, speed, color, player);
     }
 
     @AfterEach
@@ -66,6 +67,7 @@ class SnakeTest {
         assertEquals(next[0], s.getNextPosition()[0]);
         assertEquals(next[1], s.getNextPosition()[1]);
     }
+
     @Test
     void turnRight4() {
         s.turnRight();
@@ -93,6 +95,7 @@ class SnakeTest {
         assertEquals(next[0], s.getNextPosition()[0]);
         assertEquals(next[1], s.getNextPosition()[1]);
     }
+
     @Test
     void turnLeft3() {
         s.turnLeft();
@@ -102,6 +105,7 @@ class SnakeTest {
         assertEquals(next[0], s.getNextPosition()[0]);
         assertEquals(next[1], s.getNextPosition()[1]);
     }
+
     @Test
     void turnLeft4() {
         s.turnLeft();
@@ -112,48 +116,49 @@ class SnakeTest {
         assertEquals(next[0], s.getNextPosition()[0]);
         assertEquals(next[1], s.getNextPosition()[1]);
     }
+
     @Test
     void moveOn() {
         Grid g = new Grid(2, 4);
         int[] pos = {0, 0};
         int[] speed = {0, 1};
         String color = "red";
-        Snake s = new Snake(pos, speed, color);
+        String player = "Player1";
+        Snake s = new Snake(pos, speed, color, player);
         s.moveOn(g);
         g.updateGrids(s);
-        assertEquals( "+ + + + + + \n" +
-                "+   *     +\n" +
-                "+         +\n" +
-                "+ + + + + + ", g.toString());
-        s.moveOn(g);
-        g.updateGrids(s);
-        s.moveOn(g);
-        g.updateGrids(s);
+        assertEquals(  "+ + + + + + \n" +
+                                "+   *     +\n" +
+                                "+         +\n" +
+                                "+ + + + + + ", g.toString());
         s.moveOn(g);
         g.updateGrids(s);
         s.moveOn(g);
         g.updateGrids(s);
-        assertEquals( "+ + + + + + \n" +
-                "+   *     +\n" +
-                "+         +\n" +
-                "+ + + + + + ", g.toString());
+        s.moveOn(g);
+        g.updateGrids(s);
+        s.moveOn(g);
+        g.updateGrids(s);
+        assertEquals(  "+ + + + + + \n" +
+                                "+   *     +\n" +
+                                "+         +\n" +
+                                "+ + + + + + ", g.toString());
         s.turnLeft();
         s.turnLeft();
         s.moveOn(g);
         g.updateGrids(s);
         s.moveOn(g);
         g.updateGrids(s);
-        assertEquals( "+ + + + + + \n" +
-                "+       * +\n" +
-                "+         +\n" +
-                "+ + + + + + ", g.toString());
+        assertEquals(  "+ + + + + + \n" +
+                                "+       * +\n" +
+                                "+         +\n" +
+                                "+ + + + + + ", g.toString());
         s.turnRight();
         s.moveOn(g);
         g.updateGrids(s);
         assertEquals(  "+ + + + + + \n" +
-                "+         +\n" +
-                "+       * +\n" +
-                "+ + + + + + ", g.toString());
+                                "+         +\n" +
+                                "+       * +\n" +
+                                "+ + + + + + ", g.toString());
     }
-
 }

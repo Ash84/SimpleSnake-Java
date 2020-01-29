@@ -1,10 +1,22 @@
 package snake;
 
+import org.json.simple.JSONObject;
+
+import java.util.ArrayList;
+
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+
+    public static void main(String[] args) throws Exception {
+
+        // Create new game grid and snake.
+
         Grid grid = new Grid(10, 20);
         int [] pos = {0,0}; int [] speed = {0,1};
-        Snake s = new Snake(pos, speed, "red");
+        String player = "Player1";
+        Snake s = new Snake(pos, speed, "red", player);
+
+        // Test dropping a Block and some Food.
+
         grid.dropBlock(8,8);
         int i; int j = 4;
         for(i = 5; i <= 7; i++) {
@@ -13,6 +25,9 @@ public class Main {
         for (j = 4; j <= 7; j++) {
             grid.dropFood(i,j);
         }
+
+        // Start tests on a simple game.
+
         i = 0;
         grid.updateGrids(s);
         System.out.println(grid.toString());
@@ -25,8 +40,11 @@ public class Main {
             grid.updateGrids(s);
             i++;
             System.out.println(grid.toString() + "\n");
-            Thread.sleep(1000);
+            Thread.sleep(1);
         }
-        System.out.println(s.getSize());
+
+        // Game ends, display score.
+
+        ScoreDisplay.scoreDisplay(s,i);
     }
 }

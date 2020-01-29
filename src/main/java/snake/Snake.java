@@ -7,11 +7,13 @@ public class Snake {
     private String color;
     private Boolean alive = true;
     private int size = 1;
+    private String player;
 
-    public Snake(int[] pos, int[] speed, String color) {
+    public Snake(int[] pos, int[] speed, String color, String player) {
         this.pos = pos;
         this.speed = speed;
         this.color = color;
+        this.player = player;
     }
 
     public Boolean isAlive() {
@@ -22,10 +24,12 @@ public class Snake {
         this.alive = false;
     }
 
+    public String getPlayer() {
+        return player;
+    }
+
     public int[] getNextPosition() {
-        int newy = pos[0] + speed[0];
-        int newx = pos[1] + speed[1];
-        return new int[]{newy, newx};
+        return new int[]{pos[0] + speed[0], pos[1] + speed[1]};
     }
 
     public void turnRight() {
@@ -80,6 +84,9 @@ public class Snake {
     }
 
     public void moveOn(Grid grid) {
+
+        // Next position generation, and switch side if needed.
+
         int[] posBuffer = this.getNextPosition();
         int rows = grid.getNRows(); int cols = grid.getNCols();
         if (!grid.pointInsideGrid(posBuffer[0], posBuffer[1])) {
@@ -92,6 +99,8 @@ public class Snake {
             else if (posBuffer[1] < 0)
                 posBuffer[1] = posBuffer[1] + cols;
         }
+
+        // Process next position.
 
         if(grid.getCell(posBuffer[0],posBuffer[1]).compareTo("#") == 0)
             killSnake();

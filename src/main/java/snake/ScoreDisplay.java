@@ -22,15 +22,26 @@ public class ScoreDisplay {
 
         if(Files.exists(Paths.get("./Scores.json"))) {
             Scores = readScores();
-            JSONObject buffer;
-            for (int j=Scores.size()-1; j>=0; j--) {
-                buffer = (JSONObject) Scores.get(j);
-                String name = (String) buffer.get("Name");
-                if(name.compareTo(s.getPlayer()) == 0) {
-                    Scores.remove(j);
+            if (Scores.size() > 0){
+                JSONObject buffer;
+                Boolean betterScore = false;
+                for (int j=Scores.size()-1; j>=0; j--) {
+                    buffer = (JSONObject) Scores.get(j);
+                    String name = (String) buffer.get("Name");
+                    if(name.compareTo(s.getPlayer()) == 0) {
+                        long score = (long) buffer.get("Score");
+                        if(score <= s.getSize()){
+                            Scores.remove(j);
+                            betterScore = true;
+                        }
+                    }
                 }
+                if (betterScore)
+                    Scores.add(Score);
             }
-            Scores.add(Score);
+            else
+                Scores.add(Score);
+
         }
         try {
             FileWriter ScoreWriter = new FileWriter("./Scores.json");

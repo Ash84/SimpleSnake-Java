@@ -12,7 +12,7 @@ public class Main {
 
         Grid grid = new Grid(10, 20);
         int [] pos = {0,0}; int [] speed = {0,1};
-        String player = "Player2";
+        String player = "Player1";
         Snake s = new Snake(pos, speed, "red", player);
 
         // Test dropping a Block and some Food.

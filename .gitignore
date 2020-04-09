@@ -1,2 +1,4 @@
 # Project exclude paths
 /target/
+/src/main/java/snake/Main.java
+/src/main/java/snake/mainMultiplayerTests.java

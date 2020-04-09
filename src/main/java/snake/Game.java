@@ -1,15 +1,14 @@
 package snake;
 
-import org.json.simple.JSONObject;
-
 import java.awt.event.*;
 import javax.swing.*;
-import java.io.FileWriter;
-import java.io.IOException;
-
 
 public class Game extends JFrame implements KeyListener {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     int nRows;
     int nCols;
     Grid g;
@@ -29,6 +28,8 @@ public class Game extends JFrame implements KeyListener {
         int[] speed = { 1, 0 };
         this.s = new Snake(pos, speed, "red", name);
         g.dropBlock(6, 4);
+        g.dropFood(2, 8);
+        g.dropFood(7, 3);
         pack();
         setResizable(false);
         setVisible(true);

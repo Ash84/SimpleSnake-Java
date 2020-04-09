@@ -1,19 +1,22 @@
 package snake;
 
-import org.json.simple.JSONObject;
-
 import java.util.ArrayList;
 
-public class Main {
-
-    public static void main(String[] args) throws Exception {
+public class mainMultiplayerTests {
+/*
+    public static void main(String[] args) throws InterruptedException {
 
         // Create new game grid and snake.
 
         Grid grid = new Grid(10, 20);
-        int [] pos = {0,0}; int [] speed = {0,1};
-        String player = "Player1";
-        Snake s = new Snake(pos, speed, "red", player);
+        int nOfPlayers = 1;
+        ArrayList<Snake> Players = new ArrayList<Snake>();
+        for (int i = 0; i < nOfPlayers; i++) {
+            int [] pos = {0,0}; int [] speed = {0,1};
+            String player = "Player1";
+            Players.add(new Snake(pos, speed, "red", player));
+        }
+
 
         // Test dropping a Block and some Food.
 
@@ -45,6 +48,5 @@ public class Main {
 
         // Game ends, display score.
 
-        ScoreDisplay.scoreDisplay(s,i);
-    }
+    }*/
 }
